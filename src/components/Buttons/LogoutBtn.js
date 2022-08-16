@@ -19,7 +19,7 @@ function LogoutBtn(props) {
 			<button
 				className='bg-blue-twiter text-white text-sm font-bold rounded-3xl py-2 px-4'
 				onClick={removeCookie}>
-				se déconnecter
+				Se déconnecter
 			</button>
 		</div>
 	);

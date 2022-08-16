@@ -14,7 +14,7 @@ function PostsSection(props) {
 	let current_userId = useAtomValue(userId);
 
 	return (
-		<div className='w-full px-10 border-t border-gray-500'>
+		<div id='container' className='w-full px-10 border-t border-gray-500'>
 			{posts &&
 				posts.data.map((post) => (
 					<div id={post.id} className='py-8 border-b border-gray-300'>

@@ -3,10 +3,6 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { userId } from "../atoms/user";
 import useFetchPosts from "../hooks/useFetchPosts";
-
-import TrashIcon from "../svg/TrashIcon";
-import HeartIcon from "../svg/HeartIcon";
-import { Link } from "react-router-dom";
 import SinglePost from "../components/SinglePost";
 
 function OtherUserProfile(props) {

@@ -1,7 +1,7 @@
-import { useAtomValue } from "jotai";
-import React, { useEffect, useState } from "react";
+import { useAtom, useAtomValue } from "jotai";
+import React, { useEffect, useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
-import { getToken } from "../atoms/user";
+import { getToken, reload } from "../atoms/user";
 import CreatePost from "../components/CreatePost";
 import PostsSection from "../components/PostsSection";
 
