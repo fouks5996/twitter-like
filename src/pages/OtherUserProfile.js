@@ -3,9 +3,9 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { userId } from "../atoms/user";
 import useFetchPosts from "../hooks/useFetchPosts";
-import SinglePost from "../components/SinglePost";
+import SinglePost from "../components/posts/SinglePost";
 
-function OtherUserProfile(props) {
+function OtherUserProfile() {
 	let { id } = useParams();
 	let navigate = useNavigate();
 	let current_userId = useAtomValue(userId);

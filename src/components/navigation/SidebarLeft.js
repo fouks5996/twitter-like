@@ -1,11 +1,12 @@
 import { useAtomValue } from "jotai";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { getToken, userName } from "../atoms/user";
-import HomeIcon from "../svg/HomeIcon";
-import TwitterLogo from "../svg/TwitterLogo";
-import UserIcon from "../svg/UserIcon";
-import useFetch from "../hooks/useFetch";
+import { getToken, userName } from "../../atoms/user";
+import HomeIcon from "../../svg/HomeIcon";
+import TwitterLogo from "../../svg/TwitterLogo";
+import UserIcon from "../../svg/UserIcon";
+import useFetch from "../../hooks/useFetch";
+import Cookies from "js-cookie";
 const API_URL = "http://localhost:1337/api/users/me";
 
 function SidebarLeft(props) {
@@ -16,9 +17,12 @@ function SidebarLeft(props) {
 	const [data] = useFetch(API_URL);
 
 	return (
-		<div className='flex flex-col items-end border-r h-screen pr-10 pt-8 border-slate-300 w-1/4'>
+		<div className='flex flex-col items-end border-r h-screen pr-10 pt-8 border-slate-300 w-1/4 sticky top-0'>
 			<div>
-				<TwitterLogo />
+				<div className='flex items-center font-bold text-xl gap-4'>
+					<TwitterLogo />
+					Twitter
+				</div>
 				<NavLink
 					className={({ isActive }) => (isActive ? activeClassName : undefined)}
 					to='/'>
@@ -27,7 +31,7 @@ function SidebarLeft(props) {
 					</span>
 				</NavLink>
 
-				{logged && (
+				{Cookies.get("token") != undefined && (
 					<NavLink
 						className={({ isActive }) =>
 							isActive ? activeClassName : undefined

@@ -2,7 +2,7 @@ import React from "react";
 import Cookies from "js-cookie";
 import { useAtom, useSetAtom } from "jotai";
 import { getToken, userId } from "../atoms/user";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const API_URL = "http://localhost:1337/api/auth/local/register";
 
 function Signup(props) {
@@ -33,29 +33,69 @@ function Signup(props) {
 				current_userId(data.user.id);
 				navigate("/", { replace: true });
 				Cookies.set("token", data.jwt);
+			})
+			.catch((err) => {
+				console.log(err.messagge);
+				alert("Votre pseudo doit faire plus de 3 lettres, réessayer");
+				window.location.reload();
 			});
 	};
 
 	return (
 		<div className='my-0 mx-auto flex flex-col items-center justify-center w-full'>
-			<h1 className='text-2xl font-bold my-4'> Créer un compte </h1>
-			<form className='flex flex-col max-w-xs' onSubmit={handleSubmit}>
-				<label> Username </label>
-				<input className='border border-gray-400' type='text' name='username' />
-				<label> email </label>
-				<input className='border border-gray-400' type='text' name='email' />
-				<label> password </label>
+			<h1 className='text-3xl font-bold mt-10 mb-6'> Créer un compte </h1>
+			<form
+				className='flex flex-col justify-center items-center'
+				onSubmit={handleSubmit}>
+				<div className='flex flex-col'>
+					<label className='ml-2 mb-1 text-gray-400 text-sm font-semibold'>
+						{" "}
+						Nom d'utilisateur{" "}
+					</label>
+					<input
+						className='border pl-4 border-gray-300 h-11 w-96 rounded-3xl placeholder:text-sm placeholder:text-slate-300'
+						type='text'
+						placeholder='John Doe'
+						name='username'
+					/>
+				</div>
+				<div className='flex flex-col'>
+					<label className='ml-2 mb-1 mt-5 text-gray-400 text-sm font-semibold'>
+						{" "}
+						Email{" "}
+					</label>
+					<input
+						className='border pl-4 border-gray-300 h-11 w-96 rounded-3xl placeholder:text-sm placeholder:text-slate-300'
+						type='text'
+						placeholder='John Doe'
+						name='email'
+					/>
+				</div>
+				<div className='flex flex-col'>
+					<label className='ml-2 mb-1 mt-5 text-gray-400 text-sm font-semibold'>
+						{" "}
+						Mot de passe{" "}
+					</label>
+					<input
+						className='border pl-4 border-gray-300 h-11 w-96 rounded-3xl placeholder:text-sm placeholder:text-slate-300 '
+						type='password'
+						name='password'
+					/>
+				</div>
 				<input
-					className='border border-gray-400'
-					type='password'
-					name='password'
-				/>
-				<input
-					className='py-2 px-4 mt-4 bg-slate-200'
+					className='bg-blue-twiter mt-6 text-white text-sm font-bold rounded-3xl py-2 px-4 w-fit cursor-pointer'
 					type='submit'
-					value='submit'
+					value='Créer mon compte'
 				/>
 			</form>
+			<Link to='/signin'>
+				{" "}
+				<p className='text-blue-twiter mt-3'>
+					{" "}
+					Vous avez un compte ?{" "}
+					<span className='underline'> Connectez vous ! </span>{" "}
+				</p>
+			</Link>
 		</div>
 	);
 }

@@ -39,33 +39,57 @@ function SignIn(props) {
 				Cookies.set("token", data.jwt);
 			})
 			.catch((err) => {
+				alert("Mauvais compte, réssayez");
+				window.location.reload();
 				console.log(err.message);
 			});
 	};
 
 	return (
 		<div className='my-0 mx-auto flex flex-col items-center justify-center w-full'>
-			<h1 className='text-2xl font-bold my-4'> Se connecter </h1>
-			<form className='flex flex-col' onSubmit={handleSubmit}>
-				<label> username/email </label>
+			<h1 className='text-3xl font-bold mt-10 mb-6'> Se connecter </h1>
+			<form
+				className='flex flex-col justify-center items-center'
+				onSubmit={handleSubmit}>
+				<div className='flex flex-col'>
+					<label className='ml-2 mb-1 text-gray-400 text-sm font-semibold'>
+						{" "}
+						Nom d'utilisateur ou email{" "}
+					</label>
+					<input
+						className='border pl-4 border-gray-300 h-11 w-96 rounded-3xl placeholder:text-sm placeholder:text-slate-300'
+						type='text'
+						placeholder='John Doe'
+						name='identifier'
+					/>
+				</div>
+				<div className='flex flex-col'>
+					<label className='ml-2 mb-1 mt-5 text-gray-400 text-sm font-semibold'>
+						{" "}
+						Mot de passe{" "}
+					</label>
+					<input
+						className='border pl-4 border-gray-300 h-11 w-96 rounded-3xl placeholder:text-sm placeholder:text-slate-300 '
+						type='password'
+						name='password'
+					/>
+				</div>
 				<input
-					className='border border-gray-400'
-					type='text'
-					name='identifier'
-				/>
-				<label> password </label>
-				<input
-					className='border border-gray-400'
-					type='password'
-					name='password'
-				/>
-				<input
-					className='py-2 px-4 mt-4 bg-slate-200'
+					className='bg-blue-twiter mt-6 text-white text-sm font-bold rounded-3xl py-2 px-4 w-fit cursor-pointer'
 					type='submit'
-					value='submit'
+					value='Se connecter'
 				/>
 			</form>
-			<Link to='/signup'>Créer un compte</Link>
+			<Link to='/signup'>
+				{" "}
+				<p className='text-blue-twiter mt-3'>
+					{" "}
+					Pas de compte ? <span className='underline'>
+						{" "}
+						Créez en un !{" "}
+					</span>{" "}
+				</p>
+			</Link>
 		</div>
 	);
 }

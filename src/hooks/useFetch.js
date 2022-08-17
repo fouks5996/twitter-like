@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 import { userName, userEmail } from "../atoms/user";
 
-const useFetch = (url) => {
+const useFetch = (url, recucerValue) => {
 	const [data, setData] = useState(null);
 	const token = Cookies.get("token");
 	const setUserName = useSetAtom(userName);
@@ -20,7 +20,7 @@ const useFetch = (url) => {
 				setUserName(data.username);
 				setUserEmail(data.email);
 			});
-	}, [url, token]);
+	}, [url, token, recucerValue]);
 
 	return [data];
 };

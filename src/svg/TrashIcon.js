@@ -1,6 +1,6 @@
 import React from "react";
 
-function TrashIcon({ id }) {
+function TrashIcon({ id, forceUpdate }) {
 	let API_URL = `http://localhost:1337/api/posts/${id}`;
 
 	function handleClick() {
@@ -11,8 +11,12 @@ function TrashIcon({ id }) {
 			.then((res) => {
 				console.log(res);
 			});
-		const posttodelete = document.getElementById(id);
-		posttodelete.style.display = "none";
+		console.log(forceUpdate);
+		forceUpdate();
+		setTimeout(() => {
+			const posttodelete = document.getElementById(id);
+			posttodelete.style.display = "none";
+		}, "400");
 	}
 
 	return (
