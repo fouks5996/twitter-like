@@ -7,10 +7,10 @@ import Toggle from "../components/Buttons/Toggle";
 import UpdataUser from "../components/user/UpdataUser";
 import useFetch from "../hooks/useFetch";
 
-const API_URL = "http://localhost:1337/api/users/me?populate=posts";
-
 function UserProfile() {
+	// Variables
 	const [recucerValue, forceUpdate] = useReducer((x) => x + 1, 0);
+	const API_URL = "http://localhost:1337/api/users/me?populate=posts";
 	const [data] = useFetch(API_URL, recucerValue);
 	const [toggle, setToggle] = useState(false);
 	const newuserName = useAtomValue(userName);

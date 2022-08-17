@@ -3,11 +3,12 @@ import React from "react";
 import { userName, userEmail } from "../../atoms/user";
 
 function UpdataUser({ data }) {
+	// Variables
 	const API_URL = `http://localhost:1337/api/users/${data.id}`;
-
 	const [userNames, setUserName] = useAtom(userName);
 	const [userEmails, setUserEmail] = useAtom(userEmail);
 
+	// Functions
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -23,15 +24,19 @@ function UpdataUser({ data }) {
 			},
 			body: JSON.stringify(data),
 		})
-			.then(function (response) {
+			.then((response) => {
 				return response.json();
 			})
-			.then(function (data) {
+			.then((data) => {
 				setUserName(data.username);
 				setUserEmail(data.email);
 				console.log(data);
+			})
+			.catch((err) => {
+				alert("Le pseudo doit faire 3 minimum caractères");
 			});
 	};
+
 	return (
 		<div>
 			<form
@@ -39,8 +44,7 @@ function UpdataUser({ data }) {
 				onSubmit={handleSubmit}>
 				<div className='flex flex-col'>
 					<label className='ml-2 mb-1 text-gray-400 text-sm font-semibold'>
-						{" "}
-						Nom d'utilisateur{" "}
+						Nom d'utilisateur
 					</label>
 					<input
 						defaultValue={userNames}
@@ -52,8 +56,7 @@ function UpdataUser({ data }) {
 				</div>
 				<div className='flex flex-col mt-4'>
 					<label className='ml-2 mb-1 text-gray-400 text-sm font-semibold'>
-						{" "}
-						Email{" "}
+						Email
 					</label>
 					<input
 						defaultValue={userEmails}

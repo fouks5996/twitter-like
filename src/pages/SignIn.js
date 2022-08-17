@@ -1,19 +1,18 @@
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import Cookies from "js-cookie";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken, userId } from "../atoms/user";
 import { Link } from "react-router-dom";
 
-const API_URL = "http://localhost:1337/api/auth/local";
-
-function SignIn(props) {
+function SignIn() {
+	// Variables
 	let navigate = useNavigate();
-
-	let [logged, setLogged] = useAtom(getToken);
-
+	let setLogged = useSetAtom(getToken);
 	let current_userId = useSetAtom(userId);
+	const API_URL = "http://localhost:1337/api/auth/local";
 
+	// Functions
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const data = {
@@ -25,7 +24,6 @@ function SignIn(props) {
 			method: "post",
 			headers: {
 				"Content-Type": "application/json",
-				// 'Authorization': `Bearer ${yourToken}`,
 			},
 			body: JSON.stringify(data),
 		})
@@ -40,8 +38,7 @@ function SignIn(props) {
 			})
 			.catch((err) => {
 				alert("Mauvais compte, réssayez");
-				window.location.reload();
-				console.log(err.message);
+				setLogged(false);
 			});
 	};
 

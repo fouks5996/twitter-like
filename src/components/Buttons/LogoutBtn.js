@@ -1,16 +1,19 @@
 import { useSetAtom } from "jotai";
+import { RESET } from "jotai/utils";
 import Cookies from "js-cookie";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getToken } from "../../atoms/user";
+import { getToken, userId } from "../../atoms/user";
 
-function LogoutBtn(props) {
+function LogoutBtn() {
 	let navigate = useNavigate();
 	let setLogged = useSetAtom(getToken);
+	let current_userId = useSetAtom(userId);
 
-	const removeCookie = () => {
+	const Logout = () => {
 		Cookies.remove("token");
 		setLogged(false);
+		current_userId(RESET);
 		navigate("/signin", { replace: true });
 	};
 
@@ -18,7 +21,7 @@ function LogoutBtn(props) {
 		<div>
 			<button
 				className='bg-blue-twiter text-white text-sm font-bold rounded-3xl py-2 px-4'
-				onClick={removeCookie}>
+				onClick={Logout}>
 				Se déconnecter
 			</button>
 		</div>

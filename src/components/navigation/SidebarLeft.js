@@ -6,15 +6,14 @@ import HomeIcon from "../../svg/HomeIcon";
 import TwitterLogo from "../../svg/TwitterLogo";
 import UserIcon from "../../svg/UserIcon";
 import useFetch from "../../hooks/useFetch";
-import Cookies from "js-cookie";
-const API_URL = "http://localhost:1337/api/users/me";
 
 function SidebarLeft(props) {
-	let activeClassName = "text-blue-twiter";
-	let logged = useAtomValue(getToken);
+	// Variables
 	const newuserName = useAtomValue(userName);
-
+	const API_URL = "http://localhost:1337/api/users/me";
 	const [data] = useFetch(API_URL);
+	let logged = useAtomValue(getToken);
+	let activeClassName = "text-blue-twiter";
 
 	return (
 		<div className='flex flex-col items-end border-r h-screen pr-10 pt-8 border-slate-300 w-1/4 sticky top-0'>
@@ -23,15 +22,18 @@ function SidebarLeft(props) {
 					<TwitterLogo />
 					Twitter
 				</div>
-				<NavLink
-					className={({ isActive }) => (isActive ? activeClassName : undefined)}
-					to='/'>
-					<span className='flex items-center gap-2 mt-10 font-semibold'>
-						<HomeIcon /> Home
-					</span>
-				</NavLink>
-
-				{Cookies.get("token") != undefined && (
+				{logged && (
+					<NavLink
+						className={({ isActive }) =>
+							isActive ? activeClassName : undefined
+						}
+						to='/'>
+						<span className='flex items-center gap-2 mt-10 font-semibold'>
+							<HomeIcon /> Home
+						</span>
+					</NavLink>
+				)}
+				{logged && (
 					<NavLink
 						className={({ isActive }) =>
 							isActive ? activeClassName : undefined

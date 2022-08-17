@@ -14,7 +14,7 @@ function PostsSection({ recucerValue, forceUpdate }) {
 
 	const [posts, setData] = useState(null);
 	const token = Cookies.get("token");
-	const [parent] = useAutoAnimate(/* optional config */);
+	const [parent] = useAutoAnimate();
 
 	useEffect(() => {
 		fetch(API_URL, {

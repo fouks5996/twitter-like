@@ -5,8 +5,8 @@ import { getToken } from "../atoms/user";
 import { useAtomValue } from "jotai";
 
 function ProtectedRoutes() {
-	let isLoggedin = useAtomValue(getToken);
-	return <div>{isLoggedin ? <Outlet /> : <SignIn />}</div>;
+	let logged = useAtomValue(getToken);
+	return <div>{logged ? <Outlet /> : <SignIn />}</div>;
 }
 
 export default ProtectedRoutes;

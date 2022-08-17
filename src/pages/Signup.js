@@ -1,15 +1,17 @@
 import React from "react";
 import Cookies from "js-cookie";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import { getToken, userId } from "../atoms/user";
 import { Link, useNavigate } from "react-router-dom";
-const API_URL = "http://localhost:1337/api/auth/local/register";
 
-function Signup(props) {
-	let [logged, setLogged] = useAtom(getToken);
+function Signup() {
+	// Variables
+	let setLogged = useSetAtom(getToken);
 	let current_userId = useSetAtom(userId);
-
 	let navigate = useNavigate();
+	const API_URL = "http://localhost:1337/api/auth/local/register";
+
+	// Functions
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const data = {
@@ -35,9 +37,8 @@ function Signup(props) {
 				Cookies.set("token", data.jwt);
 			})
 			.catch((err) => {
-				console.log(err.messagge);
 				alert("Votre pseudo doit faire plus de 3 lettres, réessayer");
-				window.location.reload();
+				setLogged(false);
 			});
 	};
 
