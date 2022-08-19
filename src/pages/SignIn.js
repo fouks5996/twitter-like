@@ -27,10 +27,10 @@ function SignIn() {
 			},
 			body: JSON.stringify(data),
 		})
-			.then(function (response) {
+			.then((response) => {
 				return response.json();
 			})
-			.then(function (data) {
+			.then((data) => {
 				setLogged(true);
 				current_userId(data.user.id);
 				navigate("/", { replace: true });

@@ -1,8 +1,9 @@
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+import Cookies from "js-cookie";
 
 // To know if user is logged or not
-export const getToken = atom(false);
+export const getToken = atom(Cookies.get("token"));
 
 // Instance of user infos to change dynamically username and email in edit profile
 export const userName = atom("");

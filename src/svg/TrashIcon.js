@@ -7,7 +7,7 @@ function TrashIcon({ id, forceUpdate }) {
 		fetch(API_URL, {
 			method: "DELETE",
 		})
-			.then((res) => res.text()) // or res.json()
+			.then((res) => res.text())
 			.then((res) => {
 				console.log(res);
 			});
